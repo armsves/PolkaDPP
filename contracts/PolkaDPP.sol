@@ -3,7 +3,7 @@ pragma solidity ^0.8.28;
 
 contract SimpleERC721 {
     string public name = "PolkaDPP";
-    string public symbol = "PDPP";
+    string public symbol = "PDPP}";
 
     mapping(uint256 => address) private _owners;
     mapping(address => uint256) private _balances;

@@ -23,10 +23,11 @@ const Home: NextPage = () => {
   const contract = new web3.eth.Contract(abi, wagmiContractConfig.addressOrName);
 
   const [file, setFile] = useState<File>();
-  const [url, setUrl] = useState("");
-  const [uri, setUri] = useState("");
   const [uploading, setUploading] = useState(false);
-
+  const [tokenURIs, setTokenURIs] = useState<string[]>([]);
+  const [mintSuccess, setMintSuccess] = useState(false);
+  const [products, setProducts] = useState<any[]>([]);
+  const formRef = React.useRef<HTMLFormElement>(null);
 
   const getTokenCount = async (): Promise<number> => {
     try {
@@ -50,9 +51,6 @@ const Home: NextPage = () => {
     }
   };
 
-
-  const [tokenURIs, setTokenURIs] = useState<string[]>([]);
-
   useEffect(() => {
     const fetchTokenData = async () => {
       try {
@@ -74,7 +72,7 @@ const Home: NextPage = () => {
     };
 
     fetchTokenData();
-  }, []);
+  }, [mintSuccess]);
 
   const mintDPP = async (name: string, description: string, photo: File, origin: string) => {
     try {
@@ -102,9 +100,9 @@ const Home: NextPage = () => {
       let fileUrl = "";
       try {
         setUploading(true);
-        const urlRequest = await fetch("/api/files"); // Fetches the temporary upload URL
-        const urlResponse = await urlRequest.json(); // Parse response
-        const upload = await pinata.upload.public.file(file).url(urlResponse.url); // Upload the file
+        const urlRequest = await fetch("/api/files");
+        const urlResponse = await urlRequest.json();
+        const upload = await pinata.upload.public.file(file).url(urlResponse.url);
         fileUrl = await pinata.gateways.public.convert(upload.cid);
         console.log("File uploaded successfully:", fileUrl);
         setUploading(false);
@@ -127,9 +125,9 @@ const Home: NextPage = () => {
       let metadataUrl = "";
       try {
         setUploading(true);
-        const urlRequest = await fetch("/api/files"); // Fetches the temporary upload URL for metadata
-        const urlResponse = await urlRequest.json(); // Parse response
-        const metadataUpload = await pinata.upload.public.json(nftMetadata).url(urlResponse.url); // Upload metadata
+        const urlRequest = await fetch("/api/files");
+        const urlResponse = await urlRequest.json();
+        const metadataUpload = await pinata.upload.public.json(nftMetadata).url(urlResponse.url);
         metadataUrl = await pinata.gateways.public.convert(metadataUpload.cid);
         console.log("Metadata uploaded successfully:", metadataUrl);
         setUploading(false);
@@ -144,10 +142,7 @@ const Home: NextPage = () => {
       // Step 3: Call the mint function on the smart contract
       try {
         const gasEstimate = await contract.methods.mint(account, metadataUrl).estimateGas({ from: account });
-        console.log("Estimated gas:", gasEstimate);
-
         const gasPrice = await web3.eth.getGasPrice();
-        console.log("Current gas price:", gasPrice);
 
         const mintResponse = await contract.methods.mint(account, metadataUrl).send({
           from: account,
@@ -156,6 +151,14 @@ const Home: NextPage = () => {
         });
 
         console.log("Minting successful:", mintResponse);
+
+        // Reset the form
+        if (formRef.current) {
+          formRef.current.reset();
+        }
+
+        // Trigger the useEffect by updating the state
+        setMintSuccess(true);
       } catch (e) {
         console.error("Error minting NFT:", e);
         alert("Error minting NFT. Please check the console for details.");
@@ -172,8 +175,6 @@ const Home: NextPage = () => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFile(e.target?.files?.[0]);
   };
-
-  const [products, setProducts] = useState<any[]>([]);
 
   useEffect(() => {
     const fetchMetadata = async () => {
@@ -231,6 +232,7 @@ const Home: NextPage = () => {
           )}
 
           <form
+            ref={formRef}
             onSubmit={async (e) => {
               e.preventDefault();
               const formData = new FormData(e.target as HTMLFormElement);
@@ -283,7 +285,7 @@ const Home: NextPage = () => {
             spaceBetween={20}
             slidesPerView={1}
             pagination={{ clickable: true }}
-            style={{ maxWidth: '300px', margin: '0 auto' }} // Center and constrain Swiper width
+            style={{ maxWidth: '400px', margin: '0 auto' }} // Center and constrain Swiper width
           >
             {products.map((product, index) => (
               <SwiperSlide key={index}>

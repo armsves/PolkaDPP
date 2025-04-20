@@ -1,8 +1,12 @@
-This is a [RainbowKit](https://rainbowkit.com) + [wagmi](https://wagmi.sh) + [Next.js](https://nextjs.org/) project bootstrapped with [`create-rainbowkit`](/packages/create-rainbowkit).
-
 ## Getting Started
 
-First, run the development server:
+First Install the modules with:
+
+```bash
+npm install
+```
+
+Then, run the development server:
 
 ```bash
 npm run dev
@@ -10,20 +14,18 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+## Technologies used
+Remix Polkadot to deploy on Westend AssetHub
 
-## Learn More
+Rainbowkit for the wallet connection
+Wagmi/Viem for interacting with the contract
+Pinata IPFS to upload the images and the URI
+Swiper to make the DPP cards look better
 
-To learn more about this stack, take a look at the following resources:
+## Contract
+In the folder contracts you can find the PolkaDPP.sol which is a simple erc721 implementation
 
-- [RainbowKit Documentation](https://rainbowkit.com) - Learn how to customize your wallet connection flow.
-- [wagmi Documentation](https://wagmi.sh) - Learn how to interact with Ethereum.
-- [Next.js Documentation](https://nextjs.org/docs) - Learn how to build a Next.js application.
 
-You can check out [the RainbowKit GitHub repository](https://github.com/rainbow-me/rainbowkit) - your feedback and contributions are welcome!
+## Video Demo
+https://youtu.be/GOZqsBrJ7Jk
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out the [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.

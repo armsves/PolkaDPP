@@ -315,12 +315,3 @@
 .submitButton:hover {
   background-color: #005bb5;
 }
-
-#editorial-swiper div.swiper-button-prev,
-  #editorial-swiper div.swiper-button-next {
-    color: #FFFFFF;
-  }
-  #editorial-swiper div.swiper-button-prev::after,
-  #editorial-swiper div.swiper-button-next::after {
-    font-size: 2rem;
-  }

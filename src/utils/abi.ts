@@ -165,6 +165,6 @@ export const abi =
 ] as const
 
   export const wagmiContractConfig = {
-    addressOrName: "0x3f7831F71e6ab78Ed286F5646347C3Cc6bC1106a",
+    addressOrName: "0x287CECbD0a5648d5977D730A85F2b3A5ed7Bb54c",
     contractInterface: abi,
   } as const
