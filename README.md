@@ -6,6 +6,10 @@ First Install the modules with:
 npm install
 ```
 
+Copy the .env.example to .env.local and add your pinata JWT and your public gateway URL
+
+Deploy the contract with Remix Polkadot and copy/paste the address in utils/abi.ts
+
 Then, run the development server:
 
 ```bash
