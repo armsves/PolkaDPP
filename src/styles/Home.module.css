@@ -1,0 +1,326 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.container img {
+  margin: 0 8px;
+}
+
+.main {
+  flex: 1;
+  display: flex;
+  flex-direction: row; /* Horizontal layout */
+  justify-content: space-between; /* Space between the form and Swiper */
+  align-items: flex-start; /* Align items at the top */
+  gap: 2rem; /* Add spacing between the two sections */
+  width: 100%; /* Full width */
+}
+
+.main > div {
+  flex: 1; /* Ensure equal width for both sections */
+  display: flex;
+  flex-direction: column; /* Stack content vertically within each section */
+}
+
+.swiper-section {
+  flex: 1;
+  display: flex;
+  justify-content: center; /* Center the Swiper horizontally */
+}
+
+.swiper-section .swiper {
+  max-width: 600px;
+  width: 100%;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+}
+
+.footer {
+  display: flex;
+  padding: 0.1rem 0;
+  /*border-top: 1px solid #eaeaea;*/
+  justify-content: center;
+  align-items: center;
+  margin-top: auto;
+  color: #000000;
+}
+
+.footer img {
+  margin: 0 8px;
+}
+
+.footer a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-grow: 1;
+  padding: 0.1rem;
+}
+
+.header .title {
+  margin-left: 10px;
+}
+
+.header .ConnectButton {
+  margin-right: 10px;
+}
+
+.title a {
+  color: #000000;
+  text-decoration: none;
+}
+
+.title a:hover,
+.title a:focus,
+.title a:active {
+  text-decoration: underline;
+  color: #76C1FF;
+  /* Secondary Color */
+}
+
+.title {
+  margin: 1rem 0;
+  line-height: 1;
+  font-size: 2.5rem;
+  color: #000000;
+}
+
+.productsTitle {
+  margin: 1rem 0;
+  line-height: 1;
+  font-size: 1.5rem;
+  color: #000000;
+  font-weight: bold;
+}
+
+.title,
+.description {
+  text-align: center;
+}
+
+.description {
+  margin: 0 0 1rem;
+  line-height: 1.5;
+  font-size: 1.5rem;
+  color: #333333;
+}
+
+.grid {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  max-width: 800px;
+}
+
+@media (max-width: 600px) {
+  .grid {
+    width: 100%;
+    flex-direction: column;
+  }
+}
+
+.button {
+  color: white;
+  padding: 10px 10px;
+  margin: 3px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.storeButton {
+  background-color: #E6007A;
+  white-space: nowrap;
+
+}
+
+.storeButton:hover {
+  background-color: #E6007A;
+}
+
+.retrieveButton {
+  background-color: #2196F3;
+}
+
+.retrieveButton:hover {
+  background-color: #1E88E5;
+}
+
+.image-right-margin {
+  margin-right: 10px;
+}
+
+.image-left-margin {
+  margin-left: 10px;
+}
+
+.fullScreenCenter {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.1);
+  /* Semi-transparent black */
+  backdrop-filter: blur(10px);
+  /* Blur the background */
+  z-index: 1000;
+  /* Ensure it's above other content */
+}
+
+.loader {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  justify-content: center;
+  font-size: 60px;
+  color: #000;
+  border-radius: 0.8rem;
+  padding: 20px;
+
+}
+
+.animation {
+  margin-left: 20px;
+  border: 10px solid #f3f3f3;
+  border-top: 10px solid #E6007A;
+  border-radius: 50%;
+  width: 64px;
+  height: 64px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.categoriesTitle {
+  text-align: center;
+  margin: 1rem 0;
+  line-height: 1;
+  font-size: 2rem;
+  color: #000000;
+  font-weight: bold;
+}
+
+.categoriesContainer ul {
+  display: flex;
+  justify-content: space-around;
+  /* Distributes space evenly around items */
+  list-style: none;
+  /* Removes default list styling */
+  padding: 0;
+  /* Removes default padding */
+  margin-right: 25px;
+  width: 100%;
+  /* Ensures the container takes full width to space items around */
+}
+
+.productsTitle {
+  text-align: center;
+}
+
+.productsContainer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+}
+
+.productCard {
+  width: 280px;
+  border: 1px solid #ccc;
+  padding: 10px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 0.5rem;
+  align-items: center; 
+  justify-content: center
+}
+
+.input {
+  width: calc(100% - 100px);
+  padding: 10px;
+  margin: 5px 0;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.1);
+  outline: none;
+  transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+.categoryItem {
+  display: flex;
+  align-items: center;
+  /* Aligns items vertically in the center */
+  gap: 10px;
+  /* Adds some space between the items */
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 100%;
+  max-width: 400px;
+}
+
+.formGroup {
+  display: flex;
+  flex-direction: column;
+}
+
+.formGroup label {
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+}
+
+.formGroup input,
+.formGroup textarea {
+  padding: 0.5rem;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+
+.submitButton {
+  padding: 0.75rem;
+  background-color: #0070f3;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+
+.submitButton:hover {
+  background-color: #005bb5;
+}
+
+#editorial-swiper div.swiper-button-prev,
+  #editorial-swiper div.swiper-button-next {
+    color: #FFFFFF;
+  }
+  #editorial-swiper div.swiper-button-prev::after,
+  #editorial-swiper div.swiper-button-next::after {
+    font-size: 2rem;
+  }
